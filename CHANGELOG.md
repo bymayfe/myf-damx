@@ -44,6 +44,8 @@ Bu belge, **[myf-damx](https://github.com/bymayfe/myf-damx)** ile orijinal **[PX
 ---
 
 ### 4. 🖥️ GUI Arayüz Geliştirmeleri (Avalonia C# / .NET 9)
+- **[YENİ] Canlı ve Anlık UI Senkronizasyonu (Real-time Live Sync):**
+  - Fiziksel mod tuşuna basıldığında DAMX açık olsun veya olmasın, GUI'deki seçili buton (`Quiet`, `Balanced`, `AI Smart`, `Performance`, `Turbo`) ve altındaki bilgilendirme metni anlık olarak canlı güncellenir.
 - **[YENİ] `AI Smart` Butonu:**
   - `MainWindow.axaml` içine Neon Cyan `#00D4FF` ve `Brain` ikonu ile **AI Smart** seçeneği eklendi.
   - `MainWindow.axaml.cs` ve `DAMXClient.cs` içindeki termal profil sözlüklerine `"smart"` anahtarı bağlanarak Release modunda derlendi.
