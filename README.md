@@ -96,9 +96,12 @@ sudo ./uninstall.sh
 
 ## 📸 Ekran Görüntüleri
 
-![DAMX UI](https://github.com/user-attachments/assets/10d44e8c-14e4-4441-b60c-538af1840cf6)
-![DAMX Dashboard](https://github.com/user-attachments/assets/89217b26-b94c-4c78-8fe8-3de2b22a7095)
-![DAMX Keyboard RGB](https://github.com/user-attachments/assets/72a7b944-5efc-4520-83b6-88069fc05723)
+<p align="center">
+  <img src="assets/screenshots/power_performance_ai_smart.png" alt="Power & Performance - AI Smart Blue Mode" width="85%">
+</p>
+<p align="center">
+  <img src="assets/screenshots/dashboard.png" alt="Live Dashboard & Temperature Monitoring" width="85%">
+</p>
 
 ---
 
