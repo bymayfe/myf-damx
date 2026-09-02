@@ -48,7 +48,22 @@ dotnet publish -c Release -r linux-x64 --self-contained false
 cp -rfv bin/Release/net9.0/linux-x64/publish/* "${OPT_DIR}/gui/"
 chmod +x "${OPT_DIR}/gui/DivAcerManagerMax"
 
-# 5. /usr/bin kısayolu ve desktop girişi
+# 5. HWDB Tuş Eşlemesi (Fn+F11, Fn+F12, NitroSense tuşu)
+if [ -f "${SCRIPT_DIR}/configs/90-acer-nitro-an16.hwdb" ]; then
+    echo "⌨️ Klavye HWDB tuş eşlemeleri kuruluyor..."
+    cp -fv "${SCRIPT_DIR}/configs/90-acer-nitro-an16.hwdb" /etc/udev/hwdb.d/
+    systemd-hwdb update || true
+    udevadm trigger /dev/input/event* 2>/dev/null || true
+fi
+
+# 6. Touchpad Toggle Betiği
+if [ -f "${SCRIPT_DIR}/scripts/toggle-touchpad.sh" ]; then
+    echo "🖱️ Touchpad geçiş betiği kuruluyor..."
+    cp -fv "${SCRIPT_DIR}/scripts/toggle-touchpad.sh" /usr/local/bin/toggle-touchpad.sh
+    chmod +x /usr/local/bin/toggle-touchpad.sh
+fi
+
+# 7. /usr/bin kısayolu ve desktop girişi
 ln -sf "${OPT_DIR}/gui/DivAcerManagerMax" /usr/bin/damx
 
 echo "✅ [myf-damx] Kurulum başarıyla tamamlandı!"

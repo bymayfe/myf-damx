@@ -1,0 +1,8 @@
+# Acer Nitro 16 Serisi Tuş Eşlemesi (AN16-42 & Benzerleri)
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnNitro*AN*16*:pvr*
+evdev:atkbd:dmi:bvn*:bvr*:bd*:svnAcer*:pnNitroAN16-42:*
+ KEYBOARD_KEY_66=!kbdillumdown                          # Fn+F11: Klavye ışığı kıs (66)
+ KEYBOARD_KEY_ee=!kbdillumdown                          # Fn+F11: Klavye ışığı kıs (ee)
+ KEYBOARD_KEY_ef=!kbdillumup                            # Fn+F12: Klavye ışığı artır (ef)
+ KEYBOARD_KEY_f0=reserved                               # Tuş bırakma çakışmasını engelle (0xf0)
+ KEYBOARD_KEY_f5=prog1                                  # NitroSense tuşu
