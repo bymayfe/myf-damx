@@ -24,11 +24,11 @@
 ### Gereksinimler
 - `dotnet-sdk-9.0` veya `.NET Runtime 9.0`
 - `python3`, `evdev`, `systemd`
-- [myf-linuwu](https://github.com/KULLANICI_ADINIZ/myf-linuwu) çekirdek sürücüsü
+- [myf-linuwu](https://github.com/bymayfe/myf-linuwu) çekirdek sürücüsü
 
 ### Tek Komutla Kurulum:
 ```bash
-git clone https://github.com/KULLANICI_ADINIZ/myf-damx.git
+git clone https://github.com/bymayfe/myf-damx.git
 cd myf-damx
 chmod +x install.sh uninstall.sh
 sudo ./install.sh
