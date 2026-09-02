@@ -30,6 +30,8 @@ Bu proje, Acer Nitro ve Predator laptoplar için geliştirilen modern Avalonia C
 
 ## 🚀 Orijinal DAMX'e Göre Yapılan Farklılıklar & Yeni Özellikler
 
+> 📖 **Detaylı teknik değişiklik günlüğü için [CHANGELOG.md](CHANGELOG.md) dosyasına göz atabilirsiniz.**
+
 | Özellik | Orijinal `DAMX` | `myf-damx` (Bu Gelişmiş Sürüm) |
 | :--- | :--- | :--- |
 | **Termal Profil Modları (AC Şarj)** | 4 Mod (Quiet, Balanced, Performance, Turbo) | 🚀 **5 Modlu Tam Döngü:** (⚪ Sessiz ➔ 🟡 Dengeli ➔ 🔵 **AI Akıllı Fan** ➔ 🔴 Performans ➔ 🟣 Turbo) |
