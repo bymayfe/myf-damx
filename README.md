@@ -35,12 +35,17 @@ Bu proje, Acer Nitro ve Predator laptoplar için geliştirilen modern Avalonia C
 | Özellik | Orijinal `DAMX` | `myf-damx` (Bu Gelişmiş Sürüm) |
 | :--- | :--- | :--- |
 | **Termal Profil Modları (AC Şarj)** | 4 Mod (Quiet, Balanced, Performance, Turbo) | 🚀 **5 Modlu Tam Döngü:** (⚪ Sessiz ➔ 🟡 Dengeli ➔ 🔵 **AI Akıllı Fan** ➔ 🔴 Performans ➔ 🟣 Turbo) |
+| **⚡ Canlı UI Senkronizasyonu (Live Sync)** | ❌ Buton basılınca GUI güncellenmez | ✅ **Tam Canlı:** Fiziksel tuşa basıldığı an GUI'deki butonlar ve açıklamalar **anlık olarak canlı değişir** |
+| **🔄 Uygulama Açılışındaki Mod Yenilemesi** | ⚠️ Yanlış/varsayılan profile atlayabilir | ✅ **Düzeltildi:** Uygulama açıldığı an donanımın ve daemon'un gerçek durumu hatasız okunur |
+| **🔁 Event Loop & Kilitlenme Düzeltmesi** | ⚠️ `IsCheckedChanged` ile programmatic loop riski | ✅ **Düzeltildi:** `Click` bazlı tetikleme ile UI kilitlenmeleri tamamen engellendi |
 | **🔵 AI Akıllı Fan Motoru (Buz Eğrisi)** | ❌ Yok (Sadece sabit veya stok eğri) | ✅ `SmartFanWorker` işlemci sıcaklığına göre (`<55°C` %0, `55-68°C` %45, `68-78°C` %65, `>85°C` %100) dinamik ve sessiz soğutur |
 | **Fan Hunting / Titreme Önleme (Hysteresis)** | ❌ Yok | ✅ Eşik geçişlerinde histeresis kontrolü ile fan motorunun gereksiz devir dalgalanmasını önler |
 | **⚡ Mavi Klavye Flaş Animasyonu (Pulse/Blink)** | ❌ Yok | ✅ AI Akıllı moda geçerken 4 bölge **2 kez parlak Neon Mavi yanıp söner**, ardından kullanıcının kendi renk döngüsüne döner |
 | **Fiziksel Mod & Nitro Tuşu Entegrasyonu** | Sadece arayüz veya temel yakalama | ✅ Program kapalıyken bile fiziksel tuşa her basıldığında OSD bildirimleriyle 5 modu sırayla döner |
+| **⌨️ Fn+F11 / Fn+F12 Parlaklık & Nitro Tuşu** | ❌ Yok | ✅ `90-acer-nitro-an16.hwdb` kuralı ile klavye ışık tuşları ve NitroSense tuşu tam çalışır |
+| **🖱️ Wayland / KDE Touchpad Geçişi** | ❌ X11 sınırlı | ✅ Wayland & KDE Plasma 6 D-Bus senkronizasyonlu `toggle-touchpad.sh` |
 | **GUI Güncellemesi (Avalonia C#)** | 4 Buton | ✅ **`AI Smart` (Neon Cyan / Brain İkonu)** butonu XAML & C# katmanına eklendi ve derlendi |
-| **Kurulum Kolaylığı** | Karışık script menüsü | ✅ Tek tıkla arka plan servisini (`damx-daemon.service`) kuran, GUI'yi derleyen ve `/usr/bin/damx` bağlayan `install.sh` |
+| **Kurulum Kolaylığı** | Karışık script menüsü | ✅ İnteraktif, açıklamalı ve modüler `sudo ./install.sh` |
 
 ---
 
