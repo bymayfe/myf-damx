@@ -1,30 +1,71 @@
-# myf-damx (DivAcerManagerMax) 🎮❄️
+<p align="center">
+  <img src="https://raw.githubusercontent.com/bymayfe/myf-damx/main/DivAcerManagerMax/iconTransparent.png" alt="myf-damx icon" width="100" style="vertical-align: middle;">
+</p>
 
-**myf-damx**, Acer Nitro ve Predator serisi oyuncu laptopları (özellikle **Acer Nitro 16 AN16-42 / AMD Zen 4 + RTX 40** serisi) için geliştirilmiş, **5 Modlu Termal Döngü**, **🔵 AI Akıllı Fan Motoru**, **Gelişmiş 4-Bölge RGB Kontrolü** ve **C# Avalonia GUI** içeren tam kapsamlı Linux kontrol merkezidir.
+<h1 align="center">myf-damx (Div Acer Manager Max) 🎮❄️</h1>
+
+<p align="center">
+  <b>Acer Nitro & Predator Serisi için 5 Modlu Termal Kontrol, AI Akıllı Fan Motoru ve Avalonia GUI Merkezi</b><br>
+  <i>Özellikle Acer Nitro 16 (AN16-42 / Ryzen Zen 4) Donanımı için Gelişmiş Dinamik Soğutma ve Animasyonlarla Zenginleştirilmiştir</i>
+</p>
+
+<p align="center">
+  <a href="https://github.com/bymayfe/myf-damx/releases"><img src="https://img.shields.io/github/v/release/bymayfe/myf-damx?style=for-the-badge&color=blue" alt="Release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0-green.svg?style=for-the-badge" alt="License"></a>
+  <a href="https://github.com/PXDiv/Div-Acer-Manager-Max"><img src="https://img.shields.io/badge/Forked%20From-PXDiv%2FDiv--Acer--Manager--Max-orange.svg?style=for-the-badge" alt="Upstream"></a>
+  <a href="https://github.com/bymayfe/myf-linuwu"><img src="https://img.shields.io/badge/Kernel%20Driver-myf--linuwu-cyan.svg?style=for-the-badge" alt="Driver"></a>
+</p>
 
 ---
 
-## ✨ Öne Çıkan Özellikler
+## 📌 Proje Hakkında & Orijinal Kaynak
 
-- 🎮 **5'li Termal Profil Döngüsü (AC Şarjda):**
-  1. ⚪ **Sessiz Mod (Beyaz):** 0 RPM / Fısıltı devir.
-  2. 🟡 **Dengeli Mod (Turuncu):** Fabrika varsayılan Acer eğrisi.
-  3. 🔵 **AI Akıllı Fan Modu (Mavi):** Sıcaklığa duyarlı dinamik kademeli fan motoru (Buz Eğrisi) + Klavyede 2'li Neon Mavi Yanıp Sönme (Pulse/Blink).
-  4. 🔴 **Performans Modu (Kırmızı):** %75 Sabit Fan.
-  5. 🟣 **Turbo Modu (Mor):** %100 Maksimum Fan (5900 RPM).
-- 🔋 **Akıllı Pil Modu:** Pildeyken 🟢 **ECO Modu (`low-power`)** ⮀ 🟡 **Dengeli Mod (`balanced`)** otomatik geçişi.
-- 🌈 **4-Bölgeli Klavye RGB:** Özel renkler, dalga, nefes alma ve dinamik geçiş efektleri.
-- 🖥️ **Modern C# Avalonia Arayüzü:** Canlı sensör takibi, fan hızları ve tek tıkla mod seçimi.
-- ⌨️ **Fiziksel Mod Tuşu & NitroSense Butonu Desteği:** Program kapalı olsa bile tuşlara basıldığında OSD bildirimleri ve mod geçişleri sorunsuz çalışır.
+Bu proje, Acer Nitro ve Predator laptoplar için geliştirilen modern Avalonia C# kontrol paneli **[PXDiv / Div-Acer-Manager-Max (DAMX)](https://github.com/PXDiv/Div-Acer-Manager-Max)** projesinden çatallanmış (fork) ve **[@bymayfe](https://github.com/bymayfe)** tarafından yeni termal modlar, yapay zeka destekli akıllı fan kontrolü ve dinamik RGB bildirimleri ile güçlendirilmiştir.
+
+### 🌟 Orijinal Geliştiricilere Atıf & Teşekkür:
+- **DAMX GUI & Daemon Yaratıcısı:** [@PXDiv](https://github.com/PXDiv) ([Div-Acer-Manager-Max Deposu](https://github.com/PXDiv/Div-Acer-Manager-Max))
+- **Kernel Sürücü Temeli:** [@0x7375646F](https://github.com/0x7375646F) ([Linuwu-Sense Deposu](https://github.com/0x7375646F/Linuwu-Sense))
 
 ---
 
-## 🛠️ Kurulum
+## 🚀 Orijinal DAMX'e Göre Yapılan Farklılıklar & Yeni Özellikler
 
-### Gereksinimler
-- `dotnet-sdk-9.0` veya `.NET Runtime 9.0`
-- `python3`, `evdev`, `systemd`
-- [myf-linuwu](https://github.com/bymayfe/myf-linuwu) çekirdek sürücüsü
+| Özellik | Orijinal `DAMX` | `myf-damx` (Bu Gelişmiş Sürüm) |
+| :--- | :--- | :--- |
+| **Termal Profil Modları (AC Şarj)** | 4 Mod (Quiet, Balanced, Performance, Turbo) | 🚀 **5 Modlu Tam Döngü:** (⚪ Sessiz ➔ 🟡 Dengeli ➔ 🔵 **AI Akıllı Fan** ➔ 🔴 Performans ➔ 🟣 Turbo) |
+| **🔵 AI Akıllı Fan Motoru (Buz Eğrisi)** | ❌ Yok (Sadece sabit veya stok eğri) | ✅ `SmartFanWorker` işlemci sıcaklığına göre (`<55°C` %0, `55-68°C` %45, `68-78°C` %65, `>85°C` %100) dinamik ve sessiz soğutur |
+| **Fan Hunting / Titreme Önleme (Hysteresis)** | ❌ Yok | ✅ Eşik geçişlerinde histeresis kontrolü ile fan motorunun gereksiz devir dalgalanmasını önler |
+| **⚡ Mavi Klavye Flaş Animasyonu (Pulse/Blink)** | ❌ Yok | ✅ AI Akıllı moda geçerken 4 bölge **2 kez parlak Neon Mavi yanıp söner**, ardından kullanıcının kendi renk döngüsüne döner |
+| **Fiziksel Mod & Nitro Tuşu Entegrasyonu** | Sadece arayüz veya temel yakalama | ✅ Program kapalıyken bile fiziksel tuşa her basıldığında OSD bildirimleriyle 5 modu sırayla döner |
+| **GUI Güncellemesi (Avalonia C#)** | 4 Buton | ✅ **`AI Smart` (Neon Cyan / Brain İkonu)** butonu XAML & C# katmanına eklendi ve derlendi |
+| **Kurulum Kolaylığı** | Karışık script menüsü | ✅ Tek tıkla arka plan servisini (`damx-daemon.service`) kuran, GUI'yi derleyen ve `/usr/bin/damx` bağlayan `install.sh` |
+
+---
+
+## 🎮 5'li Termal Profil Döngüsü
+
+Laptopun üzerindeki fiziksel mod tuşuna basıldığında (veya GUI üzerinden) sırasıyla:
+
+```mermaid
+graph LR
+    A["⚪ SESSİZ (Beyaz)<br>0 RPM / Fısıltı"] --> B["🟡 DENGELİ (Turuncu)<br>Acer Stok Fabrika Eğrisi"]
+    B --> C["🔵 AI AKILLI FAN (Mavi)<br>Sıcaklığa Duyarlı Buz Eğrisi"]
+    C --> D["🔴 PERFORMANS (Kırmızı)<br>%75 Sabit Fan"]
+    D --> E["🟣 TURBO (Mor)<br>%100 Tam Devir (5900 RPM)"]
+    E --> A
+```
+
+### 🔋 Pildeyken:
+- 🟢 **ECO Modu (`low-power`)** ⮀ 🟡 **Dengeli Mod (`balanced`)**
+
+---
+
+## 🛠️ Kurulum Rehberi
+
+### Gereksinimler:
+* [.NET 9.0 SDK](https://dotnet.microsoft.com/download) (`dotnet-sdk-9.0` veya `dotnet-runtime-9.0`)
+* `python3`, `python-evdev`, `systemd`, `libnotify`
+* [myf-linuwu](https://github.com/bymayfe/myf-linuwu) çekirdek sürücüsü
 
 ### Tek Komutla Kurulum:
 ```bash
@@ -34,17 +75,33 @@ chmod +x install.sh uninstall.sh
 sudo ./install.sh
 ```
 
-### Çalıştırma:
+### Programı Çalıştırma:
 ```bash
 damx
 ```
 
-### Kaldırma:
+### Kaldırma (Uninstall):
 ```bash
 sudo ./uninstall.sh
 ```
 
 ---
 
+## 📸 Ekran Görüntüleri
+
+![DAMX UI](https://github.com/user-attachments/assets/10d44e8c-14e4-4441-b60c-538af1840cf6)
+![DAMX Dashboard](https://github.com/user-attachments/assets/89217b26-b94c-4c78-8fe8-3de2b22a7095)
+![DAMX Keyboard RGB](https://github.com/user-attachments/assets/72a7b944-5efc-4520-83b6-88069fc05723)
+
+---
+
+## 🤝 Katkıda Bulunma & Destek
+
+Hata bildirimleri, öneriler ve katkılar için GitHub üzerinden Issue veya Pull Request açabilirsiniz.
+
+---
+
 ## 📜 Lisans
-Bu proje **GPL-3.0 Lisansı** ile lisanslanmıştır.
+
+Bu proje **GNU General Public License v3.0 (GPL-3.0)** altında lisanslanmıştır.  
+Detaylar için [LICENSE](LICENSE) dosyasına bakabilirsiniz.
