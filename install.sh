@@ -43,6 +43,39 @@ echo "=================================================================="
 echo ""
 
 # ------------------------------------------------------------------------------
+# 0. Kernel Driver Check & Auto-Install
+# ------------------------------------------------------------------------------
+echo "🔍 Checking for required kernel driver..."
+if lsmod | grep -q "linuwu_sense" || [ -d "/sys/module/linuwu_sense" ]; then
+  echo "✓ linuwu_sense kernel driver is detected and active."
+  echo ""
+else
+  echo "⚠️  Warning: 'linuwu_sense' kernel driver was not detected on your system!"
+  echo "   ℹ️  What this means:"
+  echo "       • DAMX relies on the 'linuwu_sense' driver (provided by myf-linuwu) to"
+  echo "         communicate with the laptop's Embedded Controller (EC) and ACPI WMI."
+  echo "       • Without this driver, fan speed control and thermal profiles will not function."
+  echo ""
+  if ask_user "👉 Automatically download, build and install 'myf-linuwu' kernel driver now?" "Y"; then
+    echo "📦 Cloning and installing myf-linuwu kernel driver..."
+    TMP_LINUWU_DIR="$(mktemp -d)"
+    if git clone https://github.com/bymayfe/myf-linuwu.git "$TMP_LINUWU_DIR"; then
+      cd "$TMP_LINUWU_DIR"
+      chmod +x install.sh
+      ./install.sh -y
+      cd "$SCRIPT_DIR"
+      rm -rf "$TMP_LINUWU_DIR"
+      echo "✓ myf-linuwu kernel driver installed and activated successfully!"
+    else
+      echo "❌ Failed to clone myf-linuwu. Please install it manually from https://github.com/bymayfe/myf-linuwu"
+    fi
+  else
+    echo "ℹ️  Continuing DAMX setup without driver. You can install myf-linuwu later."
+  fi
+  echo ""
+fi
+
+# ------------------------------------------------------------------------------
 # 1. Daemon & Smart Fan
 # ------------------------------------------------------------------------------
 echo "📌 [Component 1/4] Background Daemon & AI Smart Fan Engine"
