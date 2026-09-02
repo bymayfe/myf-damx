@@ -2,7 +2,7 @@
 set -e
 
 # ==============================================================================
-#  myf-damx - Interactive Modular Installer (English)
+#  myf-damx - Interactive Modular Installer with Detailed Explanations
 # ==============================================================================
 
 if [ "$EUID" -ne 0 ]; then
@@ -36,41 +36,78 @@ ask_user() {
   done
 }
 
-echo "=========================================================="
+echo "=================================================================="
 echo "  🎮 myf-damx - Div Acer Manager Max Modular Installer"
 echo "  Author: @bymayfe | License: GPL-3.0"
-echo "=========================================================="
+echo "=================================================================="
 echo ""
 
-# 1. Ask for Daemon & Smart Fan Worker
+# ------------------------------------------------------------------------------
+# 1. Daemon & Smart Fan
+# ------------------------------------------------------------------------------
+echo "📌 [Component 1/4] Background Daemon & AI Smart Fan Engine"
+echo "   ℹ️  What this does:"
+echo "       • Enables the full 5-Mode thermal cycle (Quiet ➔ Balanced ➔ AI Smart ➔ Perf ➔ Turbo)."
+echo "       • FIXES the fan-fighting / hunting bug using intelligent temperature hysteresis."
+echo "       • Runs the dynamic 'Ice Curve' (<55°C whisper silent, 55-68°C 45%, 68-78°C 65%, >85°C 100%)."
+echo "       • Triggers a 2-pulse Electric Blue keyboard flash and restores your custom RGB colors."
+echo ""
 INSTALL_DAEMON=true
-if ! ask_user "👉 1. Install DAMX Background Daemon & 5-Mode AI Smart Fan Engine?" "Y"; then
+if ! ask_user "👉 Install DAMX Background Daemon & AI Smart Fan Engine?" "Y"; then
   INSTALL_DAEMON=false
 fi
+echo ""
 
-# 2. Ask for Avalonia C# GUI
+# ------------------------------------------------------------------------------
+# 2. Avalonia C# GUI
+# ------------------------------------------------------------------------------
+echo "📌 [Component 2/4] DivAcerManagerMax GUI (.NET 9 Avalonia)"
+echo "   ℹ️  What this does:"
+echo "       • Modern desktop GUI with real-time temperature, fan RPM, and sensor monitoring."
+echo "       • Adds the new 'AI Smart' button (Neon Cyan / Brain icon) to the UI."
+echo "       • FIXES UI desync: Physical button presses update the GUI radio buttons LIVE in real-time."
+echo "       • Creates the '/usr/bin/damx' system command shortcut."
+echo ""
 INSTALL_GUI=true
-if ! ask_user "👉 2. Build and install DivAcerManagerMax GUI (.NET 9 Avalonia)?" "Y"; then
+if ! ask_user "👉 Build and install DivAcerManagerMax GUI (.NET 9)?" "Y"; then
   INSTALL_GUI=false
 fi
+echo ""
 
-# 3. Ask for HWDB Keymaps
+# ------------------------------------------------------------------------------
+# 3. HWDB Keymaps
+# ------------------------------------------------------------------------------
+echo "📌 [Component 3/4] Hardware Keyboard Keymaps (udev hwdb)"
+echo "   ℹ️  What this does:"
+echo "       • FIXES non-working Fn+F11 (keyboard brightness down) and Fn+F12 (brightness up)."
+echo "       • Maps the dedicated NitroSense key (scancode 0xf5) to prog1 for instant DAMX launching."
+echo "       • Applies udev rules for Acer Nitro 16 (AN16-42 & compatible models)."
+echo ""
 INSTALL_HWDB=true
-if ! ask_user "👉 3. Install Acer Nitro 16 Hardware Keymaps (Fn+F11/F12 brightness & Nitro key)?" "Y"; then
+if ! ask_user "👉 Install Acer Nitro 16 Hardware Keymaps (Fn+F11/F12 & Nitro key)?" "Y"; then
   INSTALL_HWDB=false
 fi
+echo ""
 
-# 4. Ask for Wayland/KDE Touchpad script
+# ------------------------------------------------------------------------------
+# 4. Wayland/KDE Touchpad Integration
+# ------------------------------------------------------------------------------
+echo "📌 [Component 4/4] Wayland & KDE Plasma 6 Touchpad Integration"
+echo "   ℹ️  What this does:"
+echo "       • FIXES touchpad toggle failures under Wayland and KDE Plasma 6."
+echo "       • Simultaneously syncs kcminputrc and KWin D-Bus for instant, persistent disable/enable."
+echo "       • Displays an on-screen desktop OSD notification indicating Touchpad Active / Disabled."
+echo ""
 INSTALL_TOUCHPAD=true
-if ! ask_user "👉 4. Install Wayland/KDE Plasma 6 Touchpad toggle integration?" "Y"; then
+if ! ask_user "👉 Install Wayland & KDE Plasma 6 Touchpad toggle integration?" "Y"; then
   INSTALL_TOUCHPAD=false
 fi
-
 echo ""
-echo "🚀 Proceeding with installation..."
-echo "----------------------------------------------------------"
 
-# Target directories
+echo "=================================================================="
+echo "🚀 Proceeding with installation..."
+echo "=================================================================="
+
 mkdir -p "${OPT_DIR}/daemon"
 mkdir -p "${OPT_DIR}/gui"
 
@@ -101,7 +138,7 @@ EOF
   systemctl daemon-reload
   systemctl enable damx-daemon.service
   systemctl restart damx-daemon.service
-  echo "✓ DAMX Daemon service active and enabled on boot."
+  echo "✓ DAMX Daemon service is active and enabled on boot."
 fi
 
 # 2. GUI compilation and deployment
@@ -112,7 +149,7 @@ if [ "$INSTALL_GUI" = true ]; then
   cp -rfv bin/Release/net9.0/linux-x64/publish/* "${OPT_DIR}/gui/"
   chmod +x "${OPT_DIR}/gui/DivAcerManagerMax"
   ln -sf "${OPT_DIR}/gui/DivAcerManagerMax" /usr/bin/damx
-  echo "✓ GUI binary deployed. Command 'damx' created in /usr/bin."
+  echo "✓ GUI deployed. Launch anytime by typing 'damx' in your terminal."
 fi
 
 # 3. HWDB Keymaps
@@ -122,7 +159,7 @@ if [ "$INSTALL_HWDB" = true ]; then
     cp -fv "${SCRIPT_DIR}/configs/90-acer-nitro-an16.hwdb" /etc/udev/hwdb.d/
     systemd-hwdb update || true
     udevadm trigger /dev/input/event* 2>/dev/null || true
-    echo "✓ HWDB keymap installed (Fn+F11/F12 and NitroSense key active)."
+    echo "✓ HWDB keymap active: Fn+F11/F12 brightness and NitroSense key working."
   fi
 fi
 
@@ -136,7 +173,8 @@ if [ "$INSTALL_TOUCHPAD" = true ]; then
   fi
 fi
 
-echo "----------------------------------------------------------"
+echo "=================================================================="
 echo "✅ [myf-damx] Installation successfully completed!"
 echo "📌 To launch the GUI: damx"
 echo "📌 Service status: systemctl status damx-daemon.service"
+echo "=================================================================="
